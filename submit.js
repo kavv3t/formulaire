@@ -4,11 +4,6 @@ async function handleSubmit(event) {
   const form = document.getElementById("contactForm");
   const formData = new FormData(form); // Collecte les données du formulaire
 
-  // Affiche les données envoyées pour le débogage
-  for (const [key, value] of formData.entries()) {
-      console.log(`${key}: ${value}`);
-  }
-
   try {
       const response = await fetch(form.action, {
           method: "POST",
