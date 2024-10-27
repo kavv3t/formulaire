@@ -19,3 +19,5 @@ async function handleSubmit(event) {
     alert("Une erreur est survenue : ", + error.message);
   }
 }
+
+document.getElementById("contactForm").addEventListener("submit", handleSubmit);
