@@ -22,14 +22,22 @@
   <div id="dataDiv"></div>
   <script>
     fetch("https://script.google.com/macros/s/AKfycbx4PyhVYibiK3-yfxRy2ue0vgB9QsjYQZVP_Losr3dyMAsagmc5UbY8N7dJHt3diabVkA/exec")
-    .then(response => response.json())
-    .then(data => {
-      const div = document.getElementById("dataDiv");
-      data.forEach(entry => {
-        div.innerHTML += `<p>Name: ${entry.name}, Email: ${entry.email}, Message: ${entry.message}</p>`;
-      });
-    })
-    .catch(error => console.error("Error fetching data:", error));
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    return response.json();
+  })
+  .then(data => {
+    const div = document.getElementById("dataDiv");
+    // Vérifiez que les données sont bien récupérées
+    console.log(data);
+    data.forEach(entry => {
+      div.innerHTML += `<p>Name: ${entry.name}, Email: ${entry.email}, Message: ${entry.message}</p>`;
+    });
+  })
+  .catch(error => console.error("Error fetching data:", error));
+
 </script>
 
 </body>
