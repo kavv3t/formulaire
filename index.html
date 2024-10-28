@@ -21,26 +21,15 @@
   <script async src="submit.js"></script>
   <div id="dataDiv"></div>
   <script>
-    const url = 'https://gist.githubusercontent.com/kavv3t/4da154145a99fa6ed310a2c565e90edc/raw';
-
-    async function fetchData() {
-        try {
-            const response = await fetch(url);
-            const data = await response.json();
-            displayData(data);
-        } catch (error) {
-            console.error("Error fetching data:", error);
-        }
-    }
-
-    function displayData(data) {
-        const dataDiv = document.getElementById('dataDiv');
-        dataDiv.innerHTML = `<p>Name: ${data.name}</p>
-                             <p>Email: ${data.email}</p>
-                             <p>Message: ${data.message}</p>`;
-    }
-
-    fetchData();
+    fetch("https://script.google.com/macros/s/AKfycbyoXYdfVtiYE9PKl1yzra33gqeER0GGCFnXM6E-atNwGh_2LFxp-OBMhz73xcz1Hv2J3Q/exec")
+    .then(response => response.json())
+    .then(data => {
+      const div = document.getElementById("dataDiv");
+      data.forEach(entry => {
+        div.innerHTML += `<p>Name: ${entry.name}, Email: ${entry.email}, Message: ${entry.message}</p>`;
+      });
+    })
+    .catch(error => console.error("Error fetching data:", error));
 </script>
 
 </body>
